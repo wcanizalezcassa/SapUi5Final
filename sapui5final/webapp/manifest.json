@@ -1,0 +1,154 @@
+{
+  "_version": "1.49.0",
+  "sap.app": {
+    "id": "sapui5final.sapui5final",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:basic",
+      "version": "1.8.5",
+      "toolsId": "939990cc-691c-4a6a-9d9c-1074577c2b1e"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "/sap/opu/odata/sap/ZEMPLOYEES_SRV/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "localUri": "localService/metadata.xml",
+          "odataVersion": "2.0"
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": true,
+    "dependencies": {
+      "minUI5Version": "1.109.3",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.f": {},
+        "sap.suite.ui.generic.template": {},
+        "sap.ui.comp": {},
+        "sap.ui.generic.app": {},
+        "sap.ui.table": {},
+        "sap.ushell": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "sapui5final.sapui5final.i18n.i18n"
+        }
+      },
+      "odataModel": {
+        "type": "sap.ui.model.odata.v2.ODataModel",
+        "dataSource": "mainService",
+        "settings": {
+            "defaultOperationMode": "Server",
+            "defaultBindingMode": "OneWay",
+            "defaultCountMode": "Request"
+        },
+        "preload": true
+      }
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "viewType": "XML",
+        "async": true,
+        "viewPath": "sapui5final.sapui5final.view",
+        "controlAggregation": "pages",
+        "controlId": "app",
+        "clearControlAggregation": false
+      },
+      "routes": [
+        {
+          "name": "RouteMain",
+          "pattern": ":?query:",
+          "target": [
+            "TargetMain"
+          ]
+        },
+        {
+            "name": "CreateEmployee",
+            "pattern": "CreateEmployee",
+            "target": [
+                "CreateEmployee"
+            ]
+        },
+        {
+            "name": "ShowEmployee",
+            "pattern": "ShowEmployee",
+            "target": [
+                "ShowEmployee"
+            ]
+        }
+      ],
+      "targets": {
+        "TargetMain": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "Main",
+          "viewName": "Main"
+        },
+        "CreateEmployee": {
+            "viewType": "XML",
+            "viewName": "CreateEmployee",
+            "viewId": "CreateEmployee",
+            "transition": "slide",
+            "clearControlAggregation": true
+        },
+        "ShowEmployee": {
+            "viewType": "XML",
+            "viewName": "ShowEmployee",
+            "viewId": "ShowEmployee",
+            "transition": "slide",
+            "clearControlAggregation": true
+        }
+        }
+    },
+    "rootView": {
+      "viewName": "sapui5final.sapui5final.view.App",
+      "type": "XML",
+      "async": true,
+      "id": "App"
+    }
+  }
+}
